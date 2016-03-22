@@ -16,7 +16,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      host: process.env.CGF_HOST || 'https://crossorigin.me/http://coolgirl.clusterrr.com'
+      host: process.env.CGF_HOST || 'http://coolgirl.clusterrr.com'
     }
   };
 
@@ -25,7 +25,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    // ENV.APP.LOG_VIEW_LOOKUPS = true;ru
   }
 
   if (environment === 'test') {
