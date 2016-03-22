@@ -16,6 +16,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      host: process.env.CGF_HOST || 'https://crossorigin.me/http://coolgirl.clusterrr.com'
     }
   };
 
