@@ -1,0 +1,16 @@
+{{#layout-main as |section|}}
+
+  {{#if (eq section 'sidebar')}}
+
+
+
+  {{else if (eq section 'content')}}
+
+    <div class="tall flexCenter">
+
+      {{paper-progress-circular}}
+
+    </div>
+
+  {{/if}}
+{{/layout-main}}

@@ -1,0 +1,123 @@
+{{#layout-main as |section|}}
+
+  {{#if (eq section 'sidebar')}}
+
+    {{paper-divider}}
+
+    <div class="md-padding">
+      <p>
+        Примерный размер:
+        <br>
+        <span
+          class={{if isMaxSizeExceeded 'red'}}
+        >{{selectedGamesSize}}</span>
+
+        КиБ из 65536 КиБ
+      </p>
+
+      <p>
+        <a href {{action "select" "all"}}>
+          Поставить все галки
+        </a>
+
+        <br>
+
+        <a href {{action "select" "none"}}>
+          Снять все галки
+        </a>
+
+        <br>
+        <a href {{action "select" "default"}}>
+          Поставить как было
+        </a>
+      </p>
+    </div>
+
+    {{#paper-list}}
+
+      {{#paper-item}}
+        {{#paper-select placeholder="Язык" model=lang}}
+          {{#paper-option value=null}}
+            любой
+          {{/paper-option}}
+
+          {{#each languages as |curLang|}}
+            {{#paper-option value=curLang}}
+              {{curLang}}
+            {{/paper-option}}
+          {{/each}}
+        {{/paper-select}}
+      {{/paper-item}}
+
+      {{#paper-item}}
+        {{#paper-select placeholder="Маппер" model=mapper}}
+          {{#paper-option value=null}}
+            любой
+          {{/paper-option}}
+
+          {{#each namedMappers as |mapper|}}
+            {{#paper-option value=mapper.name}}
+              {{mapper.name}}
+            {{/paper-option}}
+          {{/each}}
+        {{/paper-select}}
+      {{/paper-item}}
+
+      {{#paper-item}}
+        <p>С сохранениями</p>
+        {{paper-checkbox class="md-secondary" checked=battery}}
+      {{/paper-item}}
+
+    {{/paper-list}}
+
+
+
+      <div class="md-padding">
+        {{#unless isFilterDefault}}
+          <p>
+            <a href {{action "resetFilter"}}>
+              Сбросить фильтр
+            </a>
+          </p>
+        {{/unless}}
+
+        {{#if selectedGames.length}}
+          <p>
+            {{paper-input label="Результат" value=hashh attr-readonly=true}}
+          </p>
+        {{/if}}
+      </div>
+
+
+  {{else if (eq section 'content')}}
+
+    {{#paper-list class="tall"}}
+      {{#ember-collection
+        items=filteredGames
+        cell-layout=(percentage-columns-layout model.games.length (array 100) 70)
+        as |game index|
+      }}
+        {{#paper-item class="md-3-line"}}
+
+          <img src={{game.imageUrl}} alt={{game.file}} class="md-avatar">
+
+          {{paper-checkbox checked=game.checked class="md-secondary"}}
+
+          <div class="md-list-item-text">
+
+            <h3>
+              {{game.fullName}}
+            </h3>
+
+            <p>
+              {{game.size}}KB,
+              {{game.language}},
+              {{game.mapper.name}}{{#if game.battery
+              }}, с сохранениями{{/if}}
+            </p>
+          </div>
+        {{/paper-item}}
+      {{/ember-collection}}
+    {{/paper-list}}
+  {{/if}}
+{{/layout-main}}

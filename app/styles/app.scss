@@ -1,0 +1,23 @@
+img, video, iframe {
+  max-width: 100%;
+}
+
+img, video {
+  height: auto;
+}
+
+@import 'ember-paper';
+
+.tall {
+  height: calc(100vh - 64px);
+}
+
+.flexCenter {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+}
+
+.red {
+  color: red;
+}
