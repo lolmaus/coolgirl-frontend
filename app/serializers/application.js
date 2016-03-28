@@ -10,7 +10,7 @@ const {
 export default JSONSerializer.extend({
 
   // ----- Overridden methods -----
-  normalizeFindAllResponse (store, primaryModelClass, payload, id, requestType) {
+  normalizeArrayResponse (store, primaryModelClass, payload, id, requestType) {
     const payloadSemiNormalized = _.map(payload, (attrsRaw, id) => ({...attrsRaw, id}));
     return this._super(store, primaryModelClass, payloadSemiNormalized, id, requestType);
   },
