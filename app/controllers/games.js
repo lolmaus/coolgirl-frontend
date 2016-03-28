@@ -92,7 +92,7 @@ export default Controller.extend({
       .get('lastObject.id');
   }),
 
-  hashh: computed('model.games', function () {
+  hashh: computed('model.games.@each.checked', 'maxId', function () {
     var hash = "";
     var curhash = 0;
     var max_id = parseInt(this.get('maxId'), 10);
